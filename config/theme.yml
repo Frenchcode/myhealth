@@ -1,14 +1,14 @@
-name: falcon
-display_name: Falcon theme
+name: myhealth
+display_name: My Health
 version: 3.1.2
 author:
-  name: "Igor Stępień"
-  email: "igor@istepien.dev"
-  url: "https://github.com/Oksydan"
+  name: "Ephraim Bokuma"
+  email: "ephraimbokuma@hotmail.com"
+  url: "https://ephraimbokuma.com"
 
 meta:
   compatibility:
-      from: 8.0.0
+      from: 8.1.0
       to: ~
 
   available_layouts:
