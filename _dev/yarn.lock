@@ -2816,6 +2816,22 @@ ipaddr.js@1.9.1:
   resolved "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz"
   integrity sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
 
+"is_favoriteproducts@file:/home/ephraim/codes/prestashop/naslim/modules/is_favoriteproducts/_theme_dev":
+  version "1.0.0"
+  resolved "file:../../../modules/is_favoriteproducts/_theme_dev"
+
+"is_searchbar@file:/home/ephraim/codes/prestashop/naslim/modules/is_searchbar/_theme_dev":
+  version "3.0.0"
+  resolved "file:../../../modules/is_searchbar/_theme_dev"
+
+"is_shoppingcart@file:/home/ephraim/codes/prestashop/naslim/modules/is_shoppingcart/_theme_dev":
+  version "3.0.0"
+  resolved "file:../../../modules/is_shoppingcart/_theme_dev"
+
+"is_themecore@file:/home/ephraim/codes/prestashop/naslim/modules/is_themecore/_theme_dev":
+  version "4.0.0"
+  resolved "file:../../../modules/is_themecore/_theme_dev"
+
 is-array-buffer@^3.0.1, is-array-buffer@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/is-array-buffer/-/is-array-buffer-3.0.2.tgz"
