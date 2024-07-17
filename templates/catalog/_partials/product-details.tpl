@@ -1,4 +1,4 @@
-<div class="js-product-details tab-pane fade"
+<div class="js-product-details tab-pane fade{if !$product.description} in active{/if}"
      id="product-details"
      data-product="{$product.embedded_attributes|json_encode}"
      role="tabpanel"
@@ -7,11 +7,9 @@
     {if isset($product_manufacturer->id)}
       <div class="product-manufacturer">
         {if isset($manufacturer_image_url)}
-          {images_block webpEnabled=$webpEnabled}
-            <a href="{$product_brand_url}">
-              <img src="{$manufacturer_image_url}" class="img img-thumbnail manufacturer-logo" alt="{$product_manufacturer->name}" loading="lazy">
-            </a>
-          {/images_block}
+          <a href="{$product_brand_url}">
+            <img src="{$manufacturer_image_url}" class="img img-fluid manufacturer-logo" alt="{$product_manufacturer->name}" loading="lazy">
+          </a>
         {else}
           <label class="label">{l s='Brand' d='Shop.Theme.Catalog'}</label>
           <span>
@@ -54,12 +52,12 @@
 
   {block name='product_features'}
     {if $product.grouped_features}
-      <section class="product-features my-3">
+      <section class="product-features">
         <p class="h6">{l s='Data sheet' d='Shop.Theme.Catalog'}</p>
-        <dl class="row no-gutters mb-0">
+        <dl class="data-sheet">
           {foreach from=$product.grouped_features item=feature}
-            <dt class="col-4 pr-3 {if !$feature@last}pb-2 mb-2 border-bottom{/if}">{$feature.name}</dt>
-            <dd class="col-8 {if !$feature@last}pb-2 mb-2 border-bottom{/if}">{$feature.value|escape:'htmlall'|nl2br nofilter}</dd>
+            <dt class="name">{$feature.name}</dt>
+            <dd class="value">{$feature.value|escape:'htmlall'|nl2br nofilter}</dd>
           {/foreach}
         </dl>
       </section>
@@ -69,12 +67,12 @@
   {* if product have specific references, a table will be added to product details section *}
   {block name='product_specific_references'}
     {if !empty($product.specific_references)}
-      <section class="product-features my-3">
+      <section class="product-features">
         <p class="h6">{l s='Specific References' d='Shop.Theme.Catalog'}</p>
-          <dl class="row">
+          <dl class="data-sheet">
             {foreach from=$product.specific_references item=reference key=key}
-              <dt class="col-4 pr-3 {if !$reference@last}pb-2 mb-2 border-bottom{/if}">{$key}</dt>
-              <dd class="col-8 {if !$reference@last}pb-2 mb-2 border-bottom{/if}">{$reference}</dd>
+              <dt class="name">{$key}</dt>
+              <dd class="value">{$reference}</dd>
             {/foreach}
           </dl>
       </section>

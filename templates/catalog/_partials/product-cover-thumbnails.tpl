@@ -22,162 +22,76 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
-{if Tools::getValue('quickview') || Tools::getValue('action') == 'quickview'}
-  <div class="js-product-images">
-    <div class="card">
-      <div class="card-body">
-        {images_block webpEnabled=$webpEnabled}
-          {if $product.default_image}
-            <img
-              class="rounded img-fluid"
-              {generateImagesSources image=$product.default_image size='large_default' lazyload=false}
-              width="{$product.default_image.bySize.large_default.width}"
-              height="{$product.default_image.bySize.large_default.height}"
-              {if !empty($product.default_image.legend)}
-                alt="{$product.default_image.legend}"
-                title="{$product.default_image.legend}"
-              {else}
-                alt="{$product.name}"
-              {/if}
-              >
-          {else}
-            <img src="{$urls.no_picture_image.bySize.large_default.url}" class="rounded img-fluid">
-          {/if}
-        {/images_block}
-      </div>
-    </div>
-  </div>
-{else}
-  <div class="js-product-images">
-    {block name='product_cover'}
+<div class="images-container js-images-container">
+  {block name='product_cover'}
+    <div class="product-cover">
       {if $product.default_image}
-
-        <div class="product-main-images">
-          {if $product.images|count > 1}
-            {$index = 0}
-            {images_block webpEnabled=$webpEnabled}
-
-              <div class="js-product-main-images swiper swiper-custom" data-index="{$index}">
-                <div class="product-main-images__list swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img
-                      class="rounded img-fluid"
-                      {generateImagesSources image=$product.default_image size='large_default' lazyload=false}
-                      width="{$product.default_image.bySize.large_default.width}"
-                      height="{$product.default_image.bySize.large_default.height}"
-                      {if !empty($product.default_image.legend)}
-                        alt="{$product.default_image.legend}"
-                        title="{$product.default_image.legend}"
-                      {else}
-                        alt="{$product.name}"
-                      {/if}
-                      >
-                  </div>
-                  {if $product.images|count > 1}
-                    {foreach from=$product.images item=image}
-                      {if $image.id_image === $product.default_image.id_image}
-                        {continue}
-                      {/if}
-                      {$index = $index + 1}
-
-                      <div class="swiper-slide" data-index="{$index}">
-                        <img
-                          class="rounded img-fluid lazyload"
-                          {generateImagesSources image=$image size='large_default' lazyload=true}
-                          width="{$image.bySize.large_default.width}"
-                          height="{$image.bySize.large_default.height}"
-                          {if !empty($product.default_image.legend)}
-                            alt="{$image.legend}" title="{$image.legend}"
-                          {else}
-                            alt="{$product.name}"
-                          {/if}
-                          >
-                      </div>
-                    {/foreach}
-                  {/if}
-                </div>
-
-                <div class="swiper-button-prev swiper-button-custom">
-                  <span class="sr-only">{l s='Previous' d='Shop.Theme.Actions'}</span>
-                  <span class="material-icons">keyboard_arrow_left</span>
-                </div>
-                <div class="swiper-button-next swiper-button-custom">
-                  <span class="sr-only">{l s='Next' d='Shop.Theme.Actions'}</span>
-                  <span class="material-icons">keyboard_arrow_right</span>
-                </div>
-              </div>
-            {/images_block}
-          {else}
-            {images_block webpEnabled=$webpEnabled}
-              <img
-                class="rounded img-fluid"
-                {generateImagesSources image=$product.default_image size='large_default' lazyload=false}
-                width="{$product.default_image.bySize.large_default.width}"
-                height="{$product.default_image.bySize.large_default.height}"
-                {if !empty($product.default_image.legend)}
-                  alt="{$product.default_image.legend}"
-                  title="{$product.default_image.legend}"
-                {else}
-                  alt="{$product.name}"
-                {/if}>
-            {/images_block}
-          {/if}
-
-          <a class="product-main-images__modal-trigger-layer btn btn-light shadow rounded-circle hidden-sm-down" data-toggle="modal" data-target="#product-modal">
-            <span class="material-icons font-reset line-height-reset">zoom_in</span>
-          </a>
-
+        <picture>
+          {if !empty($product.default_image.bySize.large_default.sources.avif)}<source srcset="{$product.default_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
+          {if !empty($product.default_image.bySize.large_default.sources.webp)}<source srcset="{$product.default_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
+          <img
+            class="js-qv-product-cover img-fluid"
+            src="{$product.default_image.bySize.large_default.url}"
+            {if !empty($product.default_image.legend)}
+              alt="{$product.default_image.legend}"
+              title="{$product.default_image.legend}"
+            {else}
+              alt="{$product.name}"
+            {/if}
+            loading="lazy"
+            width="{$product.default_image.bySize.large_default.width}"
+            height="{$product.default_image.bySize.large_default.height}"
+          >
+        </picture>
+        <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
+          <i class="material-icons zoom-in">search</i>
         </div>
       {else}
-        <img src="{$urls.no_picture_image.bySize.large_default.url}" class="rounded img-fluid">
+        <picture>
+          {if !empty($urls.no_picture_image.bySize.large_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
+          {if !empty($urls.no_picture_image.bySize.large_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
+          <img
+            class="img-fluid"
+            src="{$urls.no_picture_image.bySize.large_default.url}"
+            loading="lazy"
+            width="{$urls.no_picture_image.bySize.large_default.width}"
+            height="{$urls.no_picture_image.bySize.large_default.height}"
+          >
+        </picture>
       {/if}
-    {/block}
+    </div>
+  {/block}
 
-    {block name='product_images'}
-      {if $product.images|count > 1}
-        <div class="js-product-thumbs product-thumbs swiper mt-2 swiper-custom">
-          {images_block webpEnabled=$webpEnabled}
-            <div class="product-thumbs__list swiper-wrapper">
-              <div class="product-thumbs__elem swiper-slide">
-                <img
-                  class="rounded img-fluid lazyload"
-                  {generateImagesSources image=$product.default_image size='home_default' lazyload=true}
-                  width="{$product.default_image.bySize.home_default.width}"
-                  height="{$product.default_image.bySize.home_default.height}"
-                  {if !empty($product.default_image.legend)}
-                    alt="{$product.default_image.legend}"
-                    title="{$product.default_image.legend}"
-                  {else}
-                    alt="{$product.name}"
-                  {/if}
-                  >
-              </div>
-              {if $product.images|count > 1}
-                {foreach from=$product.images item=image}
-                  {if $image.id_image === $product.default_image.id_image}
-                    {continue}
-                  {/if}
-                  <div class="product-thumbs__elem swiper-slide">
-                    <img
-                      class="rounded img-fluid lazyload"
-                      {generateImagesSources image=$image size='home_default' lazyload=true}
-                      width="{$image.bySize.home_default.width}"
-                      height="{$image.bySize.home_default.height}"
-                      {if !empty($product.default_image.legend)}
-                        alt="{$image.legend}" title="{$image.legend}"
-                      {else}
-                        alt="{$product.name}"
-                      {/if}
-                      >
-                  </div>
-                {/foreach}
-              {/if}
-            </div>
-          {/images_block}
-        </div>
-      {/if}
-    {/block}
-  </div>
-  {hook h='displayAfterProductThumbs' product=$product}
-{/if}
+  {block name='product_images'}
+    <div class="js-qv-mask mask">
+      <ul class="product-images js-qv-product-images">
+        {foreach from=$product.images item=image}
+          <li class="thumb-container js-thumb-container">
+            <picture>
+              {if !empty($image.bySize.small_default.sources.avif)}<source srcset="{$image.bySize.small_default.sources.avif}" type="image/avif">{/if}
+              {if !empty($image.bySize.small_default.sources.webp)}<source srcset="{$image.bySize.small_default.sources.webp}" type="image/webp">{/if}
+              <img
+                class="thumb js-thumb {if $image.id_image == $product.default_image.id_image} selected js-thumb-selected {/if}"
+                data-image-medium-src="{$image.bySize.medium_default.url}"
+                {if !empty($image.bySize.medium_default.sources)}data-image-medium-sources="{$image.bySize.medium_default.sources|@json_encode}"{/if}
+                data-image-large-src="{$image.bySize.large_default.url}"
+                {if !empty($image.bySize.large_default.sources)}data-image-large-sources="{$image.bySize.large_default.sources|@json_encode}"{/if}
+                src="{$image.bySize.small_default.url}"
+                {if !empty($image.legend)}
+                  alt="{$image.legend}"
+                  title="{$image.legend}"
+                {else}
+                  alt="{$product.name}"
+                {/if}
+                loading="lazy"
+                width="{$product.default_image.bySize.small_default.width}"
+                height="{$product.default_image.bySize.small_default.height}"
+              >
+            </picture>
+          </li>
+        {/foreach}
+      </ul>
+    </div>
+  {/block}
+{hook h='displayAfterProductThumbs' product=$product}
+</div>

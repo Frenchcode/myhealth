@@ -23,8 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="js-product-list">
-
-  {include file="catalog/_partials/productlist.tpl" products=$listing.products}
+  {include file="catalog/_partials/productlist.tpl" products=$listing.products cssClass="row"}
 
   {block name='pagination'}
     {include file='_partials/pagination.tpl' pagination=$listing.pagination}
@@ -33,6 +32,7 @@
   <div class="hidden-md-up text-xs-right up">
     <a href="#header" class="btn btn-secondary">
       {l s='Back to top' d='Shop.Theme.Actions'}
+      <i class="material-icons">&#xE316;</i>
     </a>
   </div>
 </div>

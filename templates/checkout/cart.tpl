@@ -29,26 +29,24 @@
   <section id="main">
     <div class="cart-grid row">
 
-      <!-- Left Block: cart product informations & shpping -->
-      <div class="cart-grid-body col-12 col-lg-8">
+      <!-- Left Block: cart product informations & shipping -->
+      <div class="cart-grid-body col-lg-8">
 
         <!-- cart products detailed -->
         <div class="card cart-container">
-          <div class="card-header">
-            <h1 class="h4 card-title mb-0">{l s='Shopping Cart' d='Shop.Theme.Checkout'}</h1>
+          <div class="card-block">
+            <h1 class="h1">{l s='Shopping Cart' d='Shop.Theme.Checkout'}</h1>
           </div>
+          <hr class="separator">
           {block name='cart_overview'}
             {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
           {/block}
         </div>
 
         {block name='continue_shopping'}
-          <div class="my-3">
-            <a class="btn btn-outline-primary" href="{$urls.pages.index}">
-              <span class="material-icons btn-icon mr-1">keyboard_arrow_left</span>
-              {l s='Continue shopping' d='Shop.Theme.Actions'}
-            </a>
-          </div>
+          <a class="label" href="{$urls.pages.index}">
+            <i class="material-icons">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
+          </a>
         {/block}
 
         <!-- shipping informations -->
@@ -58,31 +56,22 @@
       </div>
 
       <!-- Right Block: cart subtotal & cart total -->
-      <div class="cart-grid-right col-12 col-lg-4">
+      <div class="cart-grid-right col-lg-4">
 
         {block name='cart_summary'}
           <div class="card cart-summary">
 
-            <div class="card-header">
-              <p class="cart-title h4 mb-0">
-                {l s='Summary' d='Shop.Istheme'}
-              </p>
-            </div>
+            {block name='hook_shopping_cart'}
+              {hook h='displayShoppingCart'}
+            {/block}
 
-            <div class="card-body">
-              {block name='hook_shopping_cart'}
-                {hook h='displayShoppingCart'}
-              {/block}
+            {block name='cart_totals'}
+              {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
+            {/block}
 
-              {block name='cart_totals'}
-                {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
-              {/block}
-            </div>
-            <div class="card-body">
-              {block name='cart_actions'}
-                {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
-              {/block}
-            </div>
+            {block name='cart_actions'}
+              {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
+            {/block}
 
           </div>
         {/block}
@@ -94,7 +83,8 @@
       </div>
 
     </div>
-
+    
     {hook h='displayCrossSellingShoppingCart'}
+    
   </section>
 {/block}

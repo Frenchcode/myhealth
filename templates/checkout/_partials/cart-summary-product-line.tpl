@@ -23,42 +23,36 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='cart_summary_product_line'}
-  <div class="cart-products">
-    <div class="cart-products__thumb">
-      {images_block webpEnabled=$webpEnabled}
-        <img
-          {if $product.default_image}
-            {generateImagesSources image=$product.default_image size='cart_default' lazyload=false}
-          {else}
-            src="{$urls.no_picture_image.bySize.cart_default.url}"
-          {/if}
-          alt="{$product.name|escape:'quotes'}"
-          class="img-fluid rounded"
-          width="{$product.default_image.bySize.cart_default.width}"
-          height="{$product.default_image.bySize.cart_default.height}">
-      {/images_block}
-    </div>
-    <div class="cart-products__desc">
-      <p class="h6 mb-2 font-sm">
-        <span class="text-muted">{$product.quantity}x</span> {$product.name}
-      </p>
-
-      <ul class="mb-2">
-        <li class="text-muted small">
-          <span>{l s='Quantity' d='Shop.Theme.Catalog'}:</span>
-          <span class="font-weight-bold">{$product.quantity}</span>
-        </li>
-        {foreach from=$product.attributes key="attribute" item="value"}
-          <li class="text-muted small">
-            <span>{$attribute}:</span>
-            <span class="font-weight-bold">{$value}</span>
-          </li>
-        {/foreach}
-      </ul>
-
-      <span class="price price--sm">
-        {$product.price}
-      </span>
-    </div>
+  <div class="media-left">
+    <a href="{$product.url}" title="{$product.name}">
+      {if $product.default_image}
+        <picture>
+          {if !empty($product.default_image.small.sources.avif)}<source srcset="{$product.default_image.small.sources.avif}" type="image/avif">{/if}
+          {if !empty($product.default_image.small.sources.webp)}<source srcset="{$product.default_image.small.sources.webp}" type="image/webp">{/if}
+          <img class="media-object" src="{$product.default_image.small.url}" alt="{$product.name}" loading="lazy">
+        </picture>
+      {else}
+        <picture>
+          {if !empty($urls.no_picture_image.bySize.small_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.small_default.sources.avif}" type="image/avif">{/if}
+          {if !empty($urls.no_picture_image.bySize.small_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.small_default.sources.webp}" type="image/webp">{/if}
+          <img src="{$urls.no_picture_image.bySize.small_default.url}" loading="lazy" />
+        </picture>
+      {/if}
+    </a>
+  </div>
+  <div class="media-body">
+    <span class="product-name">
+        <a href="{$product.url}" target="_blank" rel="noopener noreferrer nofollow">{$product.name}</a>
+    </span>
+    <span class="product-quantity">x{$product.quantity}</span>
+    <span class="product-price float-xs-right">{$product.price}</span>
+    {hook h='displayProductPriceBlock' product=$product type="unit_price"}
+    {foreach from=$product.attributes key="attribute" item="value"}
+        <div class="product-line-info product-line-info-secondary text-muted">
+            <span class="label">{$attribute}:</span>
+            <span class="value">{$value}</span>
+        </div>
+    {/foreach}
+    <br/>
   </div>
 {/block}

@@ -32,12 +32,10 @@
               {foreach from=$cart.vouchers.added item=voucher}
                 <li class="cart-summary-line">
                   <span class="label">{$voucher.name}</span>
-                  <div class="value d-inline-flex align-items-center">
+                  <div class="float-xs-right">
                     <span>{$voucher.reduction_formatted}</span>
                       {if isset($voucher.code) && $voucher.code !== ''}
-                        <a href="{$voucher.delete_url}" data-link-action="remove-voucher" class="text-danger ml-1">
-                          <span class="material-icons font-reset btn-icon">delete</span>
-                        </a>
+                        <a href="{$voucher.delete_url}" data-link-action="remove-voucher"><i class="material-icons">&#xE872;</i></a>
                       {/if}
                   </div>
                 </li>
@@ -46,45 +44,44 @@
           {/block}
         {/if}
 
-        <p class="h6 mb-2">
-          {l s='Have a promo code?' d='Shop.Theme.Checkout'}
+        <p class="promo-code-button display-promo{if $cart.discounts|count > 0} with-discounts{/if}">
+          <a class="collapse-button" href="#promo-code">
+            {l s='Have a promo code?' d='Shop.Theme.Checkout'}
+          </a>
         </p>
 
-        <div id="promo-code">
+        <div id="promo-code" class="collapse{if $cart.discounts|count > 0} in{/if}">
           <div class="promo-code">
             {block name='cart_voucher_form'}
               <form action="{$urls.pages.cart}" data-link-action="add-voucher" method="post">
                 <input type="hidden" name="token" value="{$static_token}">
                 <input type="hidden" name="addDiscount" value="1">
-
-                <div class="input-group js-parent-focus">
-                  <input class="promo-input form-control js-child-focus" type="text" name="discount_name" placeholder="{l s='Promo code' d='Shop.Theme.Checkout'}">
-                  <span class="input-group-append">
-                    <button type="submit" class="btn btn-primary">
-                      {l s='Add' d='Shop.Theme.Actions'}
-                    </button>
-                  </span>
-                </div>
+                <input class="promo-input" type="text" name="discount_name" placeholder="{l s='Promo code' d='Shop.Theme.Checkout'}">
+                <button type="submit" class="btn btn-primary"><span>{l s='Add' d='Shop.Theme.Actions'}</span></button>
               </form>
             {/block}
 
             {block name='cart_voucher_notifications'}
-              <div class="alert alert-danger js-error mt-2" role="alert" style="display:none;">
-                <span class="js-error-text"></span>
+              <div class="alert alert-danger js-error" role="alert">
+                <i class="material-icons">&#xE001;</i><span class="ml-1 js-error-text"></span>
               </div>
             {/block}
+
+            <a class="collapse-button promo-code-button cancel-promo" role="button" data-toggle="collapse" data-target="#promo-code" aria-expanded="true" aria-controls="promo-code">
+              {l s='Close' d='Shop.Theme.Checkout'}
+            </a>
           </div>
         </div>
 
         {if $cart.discounts|count > 0}
-          <p class="block-promo promo-highlighted h6 mb-1 mt-3">
+          <p class="block-promo promo-highlighted">
             {l s='Take advantage of our exclusive offers:' d='Shop.Theme.Actions'}
           </p>
-          <ul class="js-discount card-block promo-discounts mb-0">
+          <ul class="js-discount card-block promo-discounts">
             {foreach from=$cart.discounts item=discount}
               <li class="cart-summary-line">
                 <span class="label">
-                  <a href="#" class="js-code font-weight-bold">{$discount.code}</a> - {$discount.name}
+                  <span class="code">{$discount.code}</span> - {$discount.name}
                 </span>
               </li>
             {/foreach}

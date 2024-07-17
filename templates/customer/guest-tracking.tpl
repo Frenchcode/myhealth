@@ -37,10 +37,8 @@
 
 {if !$registered_customer_exists}
   {block name='page_content' append}
-    <div class="row">
-      <div class="col-lg-6 col-md-8 col-12 mx-auto">
-        {include file='customer/_partials/account-transformation-form.tpl'}
-      </div>
-    </div>
+    {block name='account_transformation_form'}
+      {include file='customer/_partials/account-transformation-form.tpl'}
+    {/block}
   {/block}
 {/if}

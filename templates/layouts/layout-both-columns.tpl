@@ -22,6 +22,9 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+
+{include file='_partials/helpers.tpl'}
+
 <!doctype html>
 <html lang="{$language.locale}">
 
@@ -37,19 +40,18 @@
       {hook h='displayAfterBodyOpeningTag'}
     {/block}
 
-    <main class="l-main">
+    <main>
       {block name='product_activation'}
         {include file='catalog/_partials/product-activation.tpl'}
       {/block}
 
-      <header id="header" class="l-header">
+      <header id="header">
         {block name='header'}
           {include file='_partials/header.tpl'}
         {/block}
       </header>
 
       <section id="wrapper">
-
         {block name='notifications'}
           {include file='_partials/notifications.tpl'}
         {/block}
@@ -62,7 +64,7 @@
 
           <div class="row">
             {block name="left_column"}
-              <div id="left-column" class="col-12 col-md-4 col-lg-3">
+              <div id="left-column" class="col-xs-12 col-md-4 col-lg-3">
                 {if $page.page_name == 'product'}
                   {hook h='displayLeftColumnProduct' product=$product category=$category}
                 {else}
@@ -72,7 +74,7 @@
             {/block}
 
             {block name="content_wrapper"}
-              <div id="content-wrapper" class="js-content-wrapper left-column right-column col-md-4 col-lg-6">
+              <div id="content-wrapper" class="js-content-wrapper left-column right-column col-md-4 col-lg-3">
                 {hook h="displayContentWrapperTop"}
                 {block name="content"}
                   <p>Hello world! This is HTML5 Boilerplate.</p>
@@ -82,7 +84,7 @@
             {/block}
 
             {block name="right_column"}
-              <div id="right-column" class="col-12 col-md-4 col-lg-3">
+              <div id="right-column" class="col-xs-12 col-md-4 col-lg-3">
                 {if $page.page_name == 'product'}
                   {hook h='displayRightColumnProduct'}
                 {else}
@@ -95,7 +97,7 @@
         {hook h="displayWrapperBottom"}
       </section>
 
-      <footer id="footer" class="l-footer js-footer">
+      <footer id="footer" class="js-footer">
         {block name="footer"}
           {include file="_partials/footer.tpl"}
         {/block}
@@ -111,15 +113,6 @@
     {block name='hook_before_body_closing_tag'}
       {hook h='displayBeforeBodyClosingTag'}
     {/block}
-
-    {block name='mobile-modals'}
-      {include file="_partials/mobile-modals.tpl"}
-    {/block}
-
-    {block name='page-loader'}
-      {include file="_partials/page-loader.tpl"}
-    {/block}
-
   </body>
 
 </html>

@@ -25,50 +25,18 @@
 {extends file='page.tpl'}
 
 {block name='page_title'}
-  {l s='Sitemap' d='Shop.Theme.Global'}
+  <span class="sitemap-title">{l s='Sitemap' d='Shop.Theme.Global'}</span>
 {/block}
 
 {block name='page_content_container'}
-  <div class="row">
-      <div class="col-lg-3 col-sm-6 col-12 mb-4">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title h5 mb-0">
-              {$our_offers}
-            </h2>
-          </div>
-          {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.offers}
+  <div class="container-fluid">
+    <div class="row sitemap">
+      {foreach $sitemapUrls as $group}
+        <div class="col-md-3">
+          <h2>{$group.name}</h2>
+          {include file='cms/_partials/sitemap-nested-list.tpl' links=$group.links}
         </div>
-      </div>
-      <div class="col-lg-3 col-sm-6 col-12 mb-4">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title h5 mb-0">
-              {$categories}
-            </h2>
-          </div>
-          {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.categories}
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6 col-12 mb-4">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title h5 mb-0">
-              {$your_account}
-            </h2>
-          </div>
-          {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.user_account}
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6 col-12 mb-4">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title h5 mb-0">
-              {$pages}
-            </h2>
-          </div>
-          {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.pages}
-        </div>
-      </div>
+      {/foreach}
+    </div>
   </div>
 {/block}

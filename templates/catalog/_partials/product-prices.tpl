@@ -23,22 +23,22 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {if $product.show_price}
-  <div class="product-prices js-product-prices mb-3">
+  <div class="product-prices js-product-prices">
+    {block name='product_discount'}
+      {if $product.has_discount}
+        <div class="product-discount">
+          {hook h='displayProductPriceBlock' product=$product type="old_price"}
+          <span class="regular-price">{$product.regular_price}</span>
+        </div>
+      {/if}
+    {/block}
 
     {block name='product_price'}
-      <div class="product-price">
-        {if $product.has_discount}
-          {if $product.discount_type === 'percentage'}
-            <span class="badge badge-danger">{l s='Save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]}</span>
-          {else}
-            <span class="badge badge-danger">
-              {l s='Save %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_to_display]}
-            </span>
-          {/if}
-        {/if}
+      <div
+        class="product-price h5 {if $product.has_discount}has-discount{/if}">
 
-        <div>
-          <span class="price price--lg">
+        <div class="current-price">
+          <span class='current-price-value' content="{$product.rounded_display_price}">
             {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='product_sheet'}{/capture}
             {if '' !== $smarty.capture.custom_price}
               {$smarty.capture.custom_price nofilter}
@@ -46,17 +46,21 @@
               {$product.price}
             {/if}
           </span>
-          {block name='product_discount'}
-            {if $product.has_discount}
-              <span class="ml-2 price price--regular">{$product.regular_price}</span>
+
+          {if $product.has_discount}
+            {if $product.discount_type === 'percentage'}
+              <span class="discount discount-percentage">{l s='Save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]}</span>
+            {else}
+              <span class="discount discount-amount">
+                  {l s='Save %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_to_display]}
+              </span>
             {/if}
-          {/block}
-          {hook h='displayProductPriceBlock' product=$product type="old_price"}
+          {/if}
         </div>
 
         {block name='product_unit_price'}
           {if $displayUnitPrice}
-            <p class="product-unit-price small">{$product.unit_price_full}</p>
+            <p class="product-unit-price sub">{$product.unit_price_full}</p>
           {/if}
         {/block}
       </div>
@@ -75,8 +79,8 @@
     {/block}
 
     {block name='product_ecotax'}
-      {if !$product.is_virtual && $product.ecotax.amount > 0}
-        <p class="price-ecotax">{l s='Including %amount% for ecotax' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.ecotax_tax_inc]}
+        {if !$product.is_virtual && $product.ecotax.amount > 0}
+        <p class="price-ecotax">{l s='Including %amount% for ecotax' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.ecotax.value]}
           {if $product.has_discount}
             {l s='(not impacted by the discount)' d='Shop.Theme.Catalog'}
           {/if}
@@ -94,7 +98,6 @@
       {/if}
       {hook h='displayProductPriceBlock' product=$product type="price"}
       {hook h='displayProductPriceBlock' product=$product type="after_price"}
-
       {if $product.is_virtual	== 0}
         {if $product.additional_delivery_times == 1}
           {if $product.delivery_information}

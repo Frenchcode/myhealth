@@ -22,15 +22,20 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div class="product-variants js-product-variants mb-3">
+<div class="product-variants js-product-variants">
   {foreach from=$groups key=id_attribute_group item=group}
     {if !empty($group.attributes)}
-    <div class="product-variants-item mb-3">
-      <p class="control-label h6 mb-2">{$group.name}</p>
+    <div class="clearfix product-variants-item">
+      <span class="control-label">{$group.name}{l s=': ' d='Shop.Theme.Catalog'}
+          {foreach from=$group.attributes key=id_attribute item=group_attribute}
+            {if $group_attribute.selected}{$group_attribute.name}{/if}
+          {/foreach}
+      </span>
       {if $group.group_type == 'select'}
         <select
-          class="custom-select"
+          class="form-control form-control-select"
           id="group_{$id_attribute_group}"
+          aria-label="{$group.name}"
           data-product-attribute="{$id_attribute_group}"
           name="group[{$id_attribute_group}]">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
@@ -38,44 +43,29 @@
           {/foreach}
         </select>
       {elseif $group.group_type == 'color'}
-        <ul class="row mx-n1" id="group_{$id_attribute_group}">
-
+        <ul id="group_{$id_attribute_group}">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
-            <li class="col flex-grow-0 px-1 pb-2">
-              <div class="custom-control custom-radio-color">
-                  <input class="custom-control-input" type="radio" data-product-attribute="{$id_attribute_group}" id="{$id_attribute_group}_{$id_attribute}"  name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
-
-                  <label class="custom-control-label {if $group_attribute.html_color_code}custom-control-label-{if Tools::getBrightness($group_attribute.html_color_code) > 128}dark{else}bright{/if}{/if}" for="{$id_attribute_group}_{$id_attribute}" aria-label="{$group_attribute.name}">
-                    <span
-                      {if $group_attribute.texture}
-                        class="custom-control-input-color" style="background-image: url({$group_attribute.texture})"
-                      {elseif $group_attribute.html_color_code}
-                        class="custom-control-input-color" style="background-color: {$group_attribute.html_color_code}"
-                      {/if}
-                    >
-                    </span>
-                    <span class="sr-only">
-                      {$group_attribute.name}
-                    </span>
-                </label>
-              </div>
+            <li class="float-xs-left input-container">
+              <label aria-label="{$group_attribute.name}">
+                <input class="input-color" type="radio" data-product-attribute="{$id_attribute_group}" name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
+                <span
+                  {if $group_attribute.texture}
+                    class="color texture" style="background-image: url({$group_attribute.texture})"
+                  {elseif $group_attribute.html_color_code}
+                    class="color" style="background-color: {$group_attribute.html_color_code}"
+                  {/if}
+                ><span class="attribute-name sr-only">{$group_attribute.name}</span></span>
+              </label>
             </li>
           {/foreach}
         </ul>
       {elseif $group.group_type == 'radio'}
-        <ul id="group_{$id_attribute_group}" class="row mx-n1">
+        <ul id="group_{$id_attribute_group}">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
-            <li class="input-container attribute-radio col-auto px-1 mb-2">
-              <label class="attribute-radio__label">
-                <input
-                  class="input-radio attribute-radio__input"
-                  type="radio"
-                  data-product-attribute="{$id_attribute_group}"
-                  name="group[{$id_attribute_group}]"
-                  value="{$id_attribute}"
-                  title="{$group_attribute.name}"
-                  {if $group_attribute.selected}checked="checked"{/if}>
-                <span class="attribute-radio__text">{$group_attribute.name}</span>
+            <li class="input-container float-xs-left">
+              <label>
+                <input class="input-radio" type="radio" data-product-attribute="{$id_attribute_group}" name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
+                <span class="radio-label">{$group_attribute.name}</span>
               </label>
             </li>
           {/foreach}

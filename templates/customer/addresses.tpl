@@ -30,24 +30,23 @@
 
 {block name='page_content'}
   {if $customer.addresses}
-    <div class="row">
-      {foreach $customer.addresses as $address}
-        <div class="col-md-6 col-sm-6 mb-3">
-          {block name='customer_address'}
-            {include file='customer/_partials/block-address.tpl' address=$address}
-          {/block}
-        </div>
-      {/foreach}
-    </div>
+    {foreach $customer.addresses as $address}
+      <div class="col-lg-4 col-md-6 col-sm-6">
+      {block name='customer_address'}
+        {include file='customer/_partials/block-address.tpl' address=$address}
+      {/block}
+      </div>
+    {/foreach}
   {else}
     <div class="alert alert-info" role="alert" data-alert="info">
       {l s='No addresses are available.' d='Shop.Notifications.Success'} <a href="{$urls.pages.address}" title="{l s='Add a new address' d='Shop.Theme.Actions'}">{l s='Add a new address' d='Shop.Theme.Actions'}</a>
     </div>
   {/if}
-
-  <div class="addresses-footer mt-2 text-center">
-    <a class="btn btn-primary" href="{$urls.pages.address}" data-link-action="add-address">
-      {l s='Create new address' d='Shop.Theme.Actions'}
+  <div class="clearfix"></div>
+  <div class="addresses-footer">
+    <a href="{$urls.pages.address}" data-link-action="add-address">
+      <i class="material-icons">&#xE145;</i>
+      <span>{l s='Create new address' d='Shop.Theme.Actions'}</span>
     </a>
   </div>
 {/block}

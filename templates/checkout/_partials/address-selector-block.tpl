@@ -25,39 +25,48 @@
 {block name='address_selector_blocks'}
   {foreach $addresses as $address}
     <article
-      class="js-address-item address-item col-12 col-md-6 mb-3 checkout-option-block address-selector-block {if $address.id == $selected} selected{/if}"
-      id="{$name|classname}-address-{$address.id}">
-      <input type="radio" name="{$name}" value="{$address.id}" id="r-{$name|classname}-address-{$address.id}"
-        class="custom-control-input" {if $address.id == $selected}checked{/if}>
-      <label for="r-{$name|classname}-address-{$address.id}" class="card mb-0 cursor-pointer h-100">
-        <div class="address__header card-header h5">
-          {$address.alias}
-        </div>
-        <div class="card-body address__body">
-          {$address.formatted nofilter}
-        </div>
+      class="js-address-item address-item{if $address.id == $selected} selected{/if}"
+      id="{$name|classname}-address-{$address.id}"
+    >
+      <header class="h4">
+        <label class="radio-block">
+          <span class="custom-radio">
+            <input
+              type="radio"
+              name="{$name}"
+              value="{$address.id}"
+              {if $address.id == $selected}checked{/if}
+            >
+            <span></span>
+          </span>
+          <span class="address-alias h4">{$address.alias}</span>
+          <div class="address">{$address.formatted nofilter}</div>
+        </label>
+      </header>
+      <hr>
+      <footer class="address-footer">
         {if $interactive}
-          <div class="address__footer card-footer small">
-
-            <a class="edit-address d-flex justify-content-center align-items-center" data-link-action="edit-address"
-              href="{url entity='order' params=['id_address' => $address.id, 'editAddress' => $type, 'token' => $token]}">
-              <i class="material-icons mr-1">&#xE254;</i>{l s='Edit' d='Shop.Theme.Actions'}
-            </a>
-            <a class="delete-address d-flex justify-content-center align-items-center" data-link-action="delete-address"
-              href="{url entity='order' params=['id_address' => $address.id, 'deleteAddress' => true, 'token' => $token]}">
-              <i class="material-icons mr-1">&#xE872;</i>{l s='Delete' d='Shop.Theme.Actions'}
-            </a>
-          </div>
-
+          <a
+            class="edit-address text-muted"
+            data-link-action="edit-address"
+            href="{url entity='order' params=['id_address' => $address.id, 'editAddress' => $type, 'token' => $token]}"
+          >
+            <i class="material-icons edit">&#xE254;</i>{l s='Edit' d='Shop.Theme.Actions'}
+          </a>
+          <a
+            class="delete-address text-muted"
+            data-link-action="delete-address"
+            href="{url entity='order' params=['id_address' => $address.id, 'deleteAddress' => true, 'token' => $token]}"
+          >
+            <i class="material-icons delete">&#xE872;</i>{l s='Delete' d='Shop.Theme.Actions'}
+          </a>
         {/if}
-
-      </label>
+      </footer>
     </article>
   {/foreach}
   {if $interactive}
     <p>
-      <button class="ps-hidden-by-js form-control-submit center-block"
-        type="submit">{l s='Save' d='Shop.Theme.Actions'}</button>
+      <button class="ps-hidden-by-js form-control-submit center-block" type="submit">{l s='Save' d='Shop.Theme.Actions'}</button>
     </p>
   {/if}
 {/block}

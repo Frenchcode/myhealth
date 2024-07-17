@@ -24,10 +24,11 @@
  *}
 <div class="product-add-to-cart js-product-add-to-cart">
   {if !$configuration.is_catalog}
+    <span class="control-label">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
 
     {block name='product_quantity'}
-      <div class="product-quantity row mb-1 mx-n1 mt-n2 align-items-center">
-        <div class="qty col-12 col-sm-auto mx-auto mt-2 px-1">
+      <div class="product-quantity clearfix">
+        <div class="qty">
           <input
             type="number"
             name="qty"
@@ -41,72 +42,54 @@
               value="1"
               min="1"
             {/if}
-            class="input-group input-touchspin"
+            class="input-group"
             aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
           >
         </div>
 
-        <div class="add col mt-2 px-1">
+        <div class="add">
           <button
-            class="btn btn-primary add-to-cart btn-block"
+            class="btn btn-primary add-to-cart"
             data-button-action="add-to-cart"
             type="submit"
             {if !$product.add_to_cart_url}
               disabled
             {/if}
           >
+            <i class="material-icons shopping-cart">&#xE547;</i>
             {l s='Add to cart' d='Shop.Theme.Actions'}
           </button>
         </div>
 
-        <div class="col-auto mt-2 px-1">
-          <div class="js-product-actions-buttons">
-            <div class="row mx-n1 mt-n2 align-items-center">
-              {hook h='displayProductActions' product=$product}
-            </div>
-          </div>
-        </div>
+        {hook h='displayProductActions' product=$product}
       </div>
-
     {/block}
 
     {block name='product_availability'}
       <span id="product-availability" class="js-product-availability">
         {if $product.show_availability && $product.availability_message}
-          <span
-            {if $product.availability == 'available'}
-              class="badge badge-success py-1 mb-1"
-            {elseif $product.availability == 'last_remaining_items'}
-              class="badge badge-warning py-1 mb-1"
-            {else}
-                class="badge badge-danger py-1 mb-1"
-            {/if}
-          >
           {if $product.availability == 'available'}
-            <i class="material-icons rtl-no-flip font-reset align-bottom">&#xE5CA;</i>
+            <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
           {elseif $product.availability == 'last_remaining_items'}
-            <i class="material-icons font-reset align-bottom">&#xE002;</i>
+            <i class="material-icons product-last-items">&#xE002;</i>
           {else}
-            <i class="material-icons font-reset align-bottom">&#xE14B;</i>
+            <i class="material-icons product-unavailable">&#xE14B;</i>
           {/if}
           {$product.availability_message}
-          </span>
         {/if}
       </span>
     {/block}
 
     {block name='product_minimal_quantity'}
-      <div class="product-minimal-quantity js-product-minimal-quantity">
-      {if $product.minimal_quantity > 1}
-        <small>
+      <p class="product-minimal-quantity js-product-minimal-quantity">
+        {if $product.minimal_quantity > 1}
           {l
-            s='The minimum purchase order quantity for the product is %quantity%.'
-            d='Shop.Theme.Checkout'
-            sprintf=['%quantity%' => $product.minimal_quantity]
+          s='The minimum purchase order quantity for the product is %quantity%.'
+          d='Shop.Theme.Checkout'
+          sprintf=['%quantity%' => $product.minimal_quantity]
           }
-        </small>
-      {/if}
-      </div>
+        {/if}
+      </p>
     {/block}
   {/if}
 </div>

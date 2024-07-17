@@ -22,27 +22,20 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
-{block name='breadcrumb'}
-  {if $breadcrumb.links|count > 1}
-    <nav aria-label="breadcrumb" data-depth="{$breadcrumb.count}">
-      {block name='breadcrumb_list'}
-        <ol class="breadcrumb">
-          {foreach from=$breadcrumb.links item=path name=breadcrumb}
-            {block name='breadcrumb_item'}
-              <li {if $smarty.foreach.breadcrumb.last}class="breadcrumb-item active" aria-current="page"{else}class="breadcrumb-item"{/if}>
-                {if !$smarty.foreach.breadcrumb.last}
-                  <a href="{$path.url}">
-                {/if}
-                  {$path.title}
-                {if !$smarty.foreach.breadcrumb.last}
-                  </a>
-                {/if}
-              </li>
-            {/block}
-          {/foreach}
-        </ol>
-      {/block}
-    </nav>
-  {/if}
-{/block}
+<nav data-depth="{$breadcrumb.count}" class="breadcrumb">
+  <ol>
+    {block name='breadcrumb'}
+      {foreach from=$breadcrumb.links item=path name=breadcrumb}
+        {block name='breadcrumb_item'}
+          <li>
+            {if not $smarty.foreach.breadcrumb.last}
+              <a href="{$path.url}"><span>{$path.title}</span></a>
+            {else}
+              <span>{$path.title}</span>
+            {/if}
+          </li>
+        {/block}
+      {/foreach}
+    {/block}
+  </ol>
+</nav>

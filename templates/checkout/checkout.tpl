@@ -22,7 +22,6 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
 {extends file=$layout}
 
 {block name='header'}
@@ -32,20 +31,15 @@
 {block name='content'}
   <section id="content">
     <div class="row">
-      <div class="cart-grid-body col-12 col-lg-8 mb-4">
-        <div class="card">
-          {block name='checkout_process'}
-            {render file='checkout/checkout-process.tpl' ui=$checkout_process}
-          {/block}
-        </div>
+      <div class="cart-grid-body col-xs-12 col-lg-8">
+        {block name='checkout_process'}
+          {render file='checkout/checkout-process.tpl' ui=$checkout_process}
+        {/block}
       </div>
-
-      <div class="cart-grid-right col-12 col-lg-4">
-
+      <div class="cart-grid-right col-xs-12 col-lg-4">
         {block name='cart_summary'}
           {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
         {/block}
-
         {hook h='displayReassurance'}
       </div>
     </div>
@@ -55,4 +49,3 @@
 {block name='footer'}
   {include file='checkout/_partials/footer.tpl'}
 {/block}
-

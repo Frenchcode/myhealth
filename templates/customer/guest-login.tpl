@@ -35,6 +35,7 @@
     </header>
 
     <section class="form-fields">
+    
       <input type="hidden" name="controller" value="guest-tracking" >
 
       <div class="form-group row">
@@ -71,11 +72,8 @@
 
     </section>
 
-    <footer class="form-footer text-center clearfix">
-      <button class="btn btn-primary d-none d-md-inline-block" type="submit">
-        {l s='Send' d='Shop.Theme.Actions'}
-      </button>
-      <button class="btn btn-primary btn-block d-block d-md-none" type="submit">
+    <footer class="form-footer text-sm-center clearfix">
+      <button class="btn btn-primary" type="submit">
         {l s='Send' d='Shop.Theme.Actions'}
       </button>
     </footer>

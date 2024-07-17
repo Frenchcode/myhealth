@@ -22,16 +22,9 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
-{$jsAssetHash = Configuration::get('PS_CCCJS_VERSION')|md5}
-
 {foreach $javascript.external as $js}
-  <script
-    type="text/javascript"
-    src="{appendParamToUrl url=$js.uri key=v value=$jsAssetHash}"
-    {$js.attribute}></script>
+  <script type="text/javascript" src="{$js.uri}" {$js.attribute}></script>
 {/foreach}
-
 
 {foreach $javascript.inline as $js}
   <script type="text/javascript">

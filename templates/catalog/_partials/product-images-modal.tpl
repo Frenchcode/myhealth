@@ -23,82 +23,77 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div class="modal fade js-product-images-modal" id="product-modal">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <div class="js-modal-gallery modal-gallery swiper swiper-custom">
-        {if $product.default_image}
-          {images_block webpEnabled=$webpEnabled}
-            <div class="modal-gallery__list swiper-wrapper">
-              <div class="swiper-slide modal-gallery__elem">
-                <img
-                  class="rounded img-fluid lazyload"
-                  {generateImagesSources image=$product.default_image size='large_default' lazyload=false}
-                  width="{$product.default_image.bySize.large_default.width}"
-                  height="{$product.default_image.bySize.large_default.height}"
-                  {if !empty($product.default_image.legend)}
-                    alt="{$product.default_image.legend}"
-                    title="{$product.default_image.legend}"
-                  {else}
-                    alt="{$product.name}"
-                  {/if}
-                >
-              </div>
-
-              {if $product.images|count > 1}
-                {foreach from=$product.images item=image}
-                  {if $image.id_image === $product.default_image.id_image}
-                    {continue}
-                  {/if}
-
-                  <div class="swiper-slide modal-gallery__elem">
-                    <img
-                      class="rounded img-fluid lazyload"
-                      {generateImagesSources image=$image size='large_default' lazyload=true}
-                      width="{$image.bySize.large_default.width}"
-                      height="{$image.bySize.large_default.height}"
-                      {if !empty($product.default_image.legend)}
-                        alt="{$image.legend}" title="{$image.legend}"
-                      {else}
-                        alt="{$product.name}"
-                      {/if}
-                      >
-                  </div>
-                {/foreach}
-
-              {/if}
-
-              </div>
-            {/images_block}
-          {else}
-            {images_block webpEnabled=$webpEnabled}
+        {assign var=imagesCount value=$product.images|count}
+        <figure>
+          {if $product.default_image}
+            <picture>
+              {if !empty($product.default_image.bySize.large_default.sources.avif)}<source srcset="{$product.default_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
+              {if !empty($product.default_image.bySize.large_default.sources.webp)}<source srcset="{$product.default_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
               <img
-                class="rounded img-fluid"
-                {generateImagesSources image=$product.default_image size='large_default' lazyload=false}
+                class="js-modal-product-cover product-cover-modal"
                 width="{$product.default_image.bySize.large_default.width}"
-                height="{$product.default_image.bySize.large_default.height}"
+                src="{$product.default_image.bySize.large_default.url}"
                 {if !empty($product.default_image.legend)}
                   alt="{$product.default_image.legend}"
                   title="{$product.default_image.legend}"
                 {else}
                   alt="{$product.name}"
-                {/if}>
-            {/images_block}
+                {/if}
+                height="{$product.default_image.bySize.large_default.height}"
+              >
+            </picture>
+          {else}
+            <picture>
+              {if !empty($urls.no_picture_image.bySize.large_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
+              {if !empty($urls.no_picture_image.bySize.large_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
+              <img src="{$urls.no_picture_image.bySize.large_default.url}" loading="lazy" width="{$urls.no_picture_image.bySize.large_default.width}" height="{$urls.no_picture_image.bySize.large_default.height}" />
+            </picture>
           {/if}
-
-
-          {if $product.images|count > 1}
-            <div class="swiper-button-prev swiper-button-custom">
-              <span class="sr-only">{l s='Previous' d='Shop.Theme.Actions'}</span>
-              <span class="material-icons">keyboard_arrow_left</span>
+          <figcaption class="image-caption">
+          {block name='product_description_short'}
+            <div id="product-description-short">{$product.description_short nofilter}</div>
+          {/block}
+        </figcaption>
+        </figure>
+        <aside id="thumbnails" class="thumbnails js-thumbnails text-sm-center">
+          {block name='product_images'}
+            <div class="js-modal-mask mask {if $imagesCount <= 5} nomargin {/if}">
+              <ul class="product-images js-modal-product-images">
+                {foreach from=$product.images item=image}
+                  <li class="thumb-container js-thumb-container">
+                    <picture>
+                      {if !empty($image.medium.sources.avif)}<source srcset="{$image.medium.sources.avif}" type="image/avif">{/if}
+                      {if !empty($image.medium.sources.webp)}<source srcset="{$image.medium.sources.webp}" type="image/webp">{/if}
+                      <img
+                        data-image-large-src="{$image.large.url}"
+                        {if !empty($image.large.sources)}data-image-large-sources="{$image.large.sources|@json_encode}"{/if}
+                        class="thumb js-modal-thumb"
+                        src="{$image.medium.url}"
+                        {if !empty($image.legend)}
+                          alt="{$image.legend}"
+                          title="{$image.legend}"
+                        {else}
+                          alt="{$product.name}"
+                        {/if}
+                        width="{$image.medium.width}"
+                        height="148"
+                      >
+                    </picture>
+                  </li>
+                {/foreach}
+              </ul>
             </div>
-            <div class="swiper-button-next swiper-button-custom">
-              <span class="sr-only">{l s='Next' d='Shop.Theme.Actions'}</span>
-              <span class="material-icons">keyboard_arrow_right</span>
+          {/block}
+          {if $imagesCount > 5}
+            <div class="arrows js-modal-arrows">
+              <i class="material-icons arrow-up js-modal-arrow-up">&#xE5C7;</i>
+              <i class="material-icons arrow-down js-modal-arrow-down">&#xE5C5;</i>
             </div>
           {/if}
-        </div>
-
+        </aside>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

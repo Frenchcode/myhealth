@@ -31,129 +31,119 @@
 {block name='page_content'}
   {block name='order_infos'}
     <div id="order-infos">
-      <strong>
-        {l
-          s='Order Reference %reference% - placed on %date%'
-          d='Shop.Theme.Customeraccount'
-          sprintf=['%reference%' => $order.details.reference, '%date%' => $order.details.order_date]
-        }
-      </strong>
+      <div class="box">
+          <div class="row">
+            <div class="col-xs-{if $order.details.reorder_url}9{else}12{/if}">
+              <strong>
+                {l
+                  s='Order Reference %reference% - placed on %date%'
+                  d='Shop.Theme.Customeraccount'
+                  sprintf=['%reference%' => $order.details.reference, '%date%' => $order.details.order_date]
+                }
+              </strong>
+            </div>
+            {if $order.details.reorder_url}
+              <div class="col-xs-3 text-xs-right">
+                <a href="{$order.details.reorder_url}" class="button-primary">{l s='Reorder' d='Shop.Theme.Actions'}</a>
+              </div>
+            {/if}
+            <div class="clearfix"></div>
+          </div>
+      </div>
 
-      <ul>
-        {if $order.carrier.name}
-          <li><strong>{l s='Carrier' d='Shop.Theme.Checkout'}</strong> {$order.carrier.name}</li>
-        {/if}
+      <div class="box">
+          <ul>
+            {if $order.carrier.name}
+              <li><strong>{l s='Carrier' d='Shop.Theme.Checkout'}</strong> {$order.carrier.name}</li>
+            {/if}
+            <li><strong>{l s='Payment method' d='Shop.Theme.Checkout'}</strong> {$order.details.payment}</li>
 
-        {if $order.details.invoice_url}
-          <li>
-            <a href="{$order.details.invoice_url}">
-              {l s='Download your invoice as a PDF file.' d='Shop.Theme.Customeraccount'}
-            </a>
-          </li>
-        {/if}
+            {if $order.details.invoice_url}
+              <li>
+                <a href="{$order.details.invoice_url}">
+                  {l s='Download your invoice as a PDF file.' d='Shop.Theme.Customeraccount'}
+                </a>
+              </li>
+            {/if}
 
-        {if $order.details.recyclable}
-          <li>
-            {l s='You have given permission to receive your order in recycled packaging.' d='Shop.Theme.Customeraccount'}
-          </li>
-        {/if}
+            {if $order.details.recyclable}
+              <li>
+                {l s='You have given permission to receive your order in recycled packaging.' d='Shop.Theme.Customeraccount'}
+              </li>
+            {/if}
 
-        {if $order.details.gift_message}
-          <li>{l s='You have requested gift wrapping for this order.' d='Shop.Theme.Customeraccount'}</li>
-          <li>{l s='Message' d='Shop.Theme.Customeraccount'} {$order.details.gift_message nofilter}</li>
-        {/if}
-      </ul>
-
-      {if $order.details.reorder_url}
-        <div class="mt-2 text-right">
-          <a href="{$order.details.reorder_url}" class="btn btn-outline-primary">{l s='Reorder' d='Shop.Theme.Actions'}</a>
-        </div>
-      {/if}
-
+            {if $order.details.gift_message}
+              <li>{l s='You have requested gift wrapping for this order.' d='Shop.Theme.Customeraccount'}</li>
+              <li>{l s='Message' d='Shop.Theme.Customeraccount'} {$order.details.gift_message nofilter}</li>
+            {/if}
+          </ul>
+      </div>
+    </div>
   {/block}
 
   {block name='order_history'}
-    <section id="order-history" class="my-4">
-      <div class="d-none d-md-block">
-        <h3 class="h4">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h3>
-        <table class="table table-striped table-bordered hidden-xs-down">
-          <thead class="thead-default">
+    <section id="order-history" class="box">
+      <h3>{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h3>
+      <table class="table table-striped table-bordered table-labeled hidden-xs-down">
+        <thead class="thead-default">
+          <tr>
+            <th>{l s='Date' d='Shop.Theme.Global'}</th>
+            <th>{l s='Status' d='Shop.Theme.Global'}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {foreach from=$order.history item=state}
             <tr>
-              <th>{l s='Date' d='Shop.Theme.Global'}</th>
-              <th>{l s='Status' d='Shop.Theme.Global'}</th>
+              <td>{$state.history_date}</td>
+              <td>
+                <span class="label label-pill {$state.contrast}" style="background-color:{$state.color}">
+                  {$state.ostate_name}
+                </span>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {foreach from=$order.history item=state}
-              <tr>
-                <td>{$state.history_date}</td>
-                <td>
-                  <span
-                    class="label label-pill badge {if Tools::getBrightness($state.color) < 128}text-white{/if}"
-                    style="background-color:{$state.color}">
-                    {$state.ostate_name}
-                  </span>
-                </td>
-              </tr>
-            {/foreach}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="d-md-none">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="h5 card-title mb-0">
-              {l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}
-            </h4>
+          {/foreach}
+        </tbody>
+      </table>
+      <div class="hidden-sm-up history-lines">
+        {foreach from=$order.history item=state}
+          <div class="history-line">
+            <div class="date">{$state.history_date}</div>
+            <div class="state">
+              <span class="label label-pill {$state.contrast}" style="background-color:{$state.color}">
+                {$state.ostate_name}
+              </span>
+            </div>
           </div>
-          <div class="card-body">
-            <ul class="mb-0">
-              {foreach from=$order.history item=state}
-                <li class="mb-2">
-                  <strong class="date">
-                    {$state.history_date}:
-                  </strong>
-                  <strong style="color:{$state.color}">
-                    {$state.ostate_name}
-                  </strong>
-                </li>
-              {/foreach}
-            </ul>
-          </div>
-        </div>
+        {/foreach}
       </div>
     </section>
   {/block}
 
   {if $order.follow_up}
-    <div class="mb-4">
+    <div class="box">
       <p>{l s='Click the following link to track the delivery of your order' d='Shop.Theme.Customeraccount'}</p>
       <a href="{$order.follow_up}">{$order.follow_up}</a>
     </div>
   {/if}
 
   {block name='addresses'}
-    <div class="row mt-4 mb-n2">
+    <div class="addresses">
       {if $order.addresses.delivery}
-        <div class="col-sm-6 col-12 mb-3">
-          <article id="delivery-address" class="address card h-100">
-            <p class="address__header card-header h5">{l s='Delivery address %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.delivery.alias]}</p>
-            <div class="address__body card-body">
-              <address>{$order.addresses.delivery.formatted nofilter}</address>
-            </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <article id="delivery-address" class="box">
+            <h4>{l s='Delivery address %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.delivery.alias]}</h4>
+            <address>{$order.addresses.delivery.formatted nofilter}</address>
           </article>
         </div>
       {/if}
 
-      <div class="col-sm-6 col-12 mb-3">
-        <article id="invoice-address" class="address card h-100">
-          <p class="address__header card-header h5">{l s='Invoice address %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.invoice.alias]}</p>
-          <div class="address__body card-body">
-            <address>{$order.addresses.invoice.formatted nofilter}</address>
-          </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <article id="invoice-address" class="box">
+          <h4>{l s='Invoice address %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.invoice.alias]}</h4>
+          <address>{$order.addresses.invoice.formatted nofilter}</address>
         </article>
       </div>
+      <div class="clearfix"></div>
     </div>
   {/block}
 
@@ -169,7 +159,7 @@
 
   {block name='order_carriers'}
     {if $order.shipping}
-      <div class="mb-4">
+      <div class="box">
         <table class="table table-striped table-bordered hidden-sm-down">
           <thead class="thead-default">
             <tr>
@@ -193,34 +183,27 @@
           </tbody>
         </table>
         <div class="hidden-md-up shipping-lines">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="h5 mb-0 card-title">
-                {l s='Shipping infromations' d='Shop.Theme.Customeraccount'}
-              </h4>
+          {foreach from=$order.shipping item=line}
+            <div class="shipping-line">
+              <ul>
+                <li>
+                  <strong>{l s='Date' d='Shop.Theme.Global'}</strong> {$line.shipping_date}
+                </li>
+                <li>
+                  <strong>{l s='Carrier' d='Shop.Theme.Checkout'}</strong> {$line.carrier_name}
+                </li>
+                <li>
+                  <strong>{l s='Weight' d='Shop.Theme.Checkout'}</strong> {$line.shipping_weight}
+                </li>
+                <li>
+                  <strong>{l s='Shipping cost' d='Shop.Theme.Checkout'}</strong> {$line.shipping_cost}
+                </li>
+                <li>
+                  <strong>{l s='Tracking number' d='Shop.Theme.Checkout'}</strong> {$line.tracking nofilter}
+                </li>
+              </ul>
             </div>
-            <div class="card-body">
-              {foreach from=$order.shipping item=line}
-                <ul class="mb-0 row {if !$line@last} mb-2 border-bottom{/if}">
-                  <li class="col-sm-6 mb-2">
-                    <strong>{l s='Date' d='Shop.Theme.Global'}:</strong> {$line.shipping_date}
-                  </li>
-                  <li class="col-sm-6 mb-2">
-                    <strong>{l s='Carrier' d='Shop.Theme.Checkout'}:</strong> {$line.carrier_name}
-                  </li>
-                  <li class="col-sm-6 mb-2">
-                    <strong>{l s='Weight' d='Shop.Theme.Checkout'}:</strong> {$line.shipping_weight}
-                  </li>
-                  <li class="col-sm-6 mb-2">
-                    <strong>{l s='Shipping cost' d='Shop.Theme.Checkout'}:</strong> {$line.shipping_cost}
-                  </li>
-                  <li class="col-sm-6 mb-2">
-                    <strong>{l s='Tracking number' d='Shop.Theme.Checkout'}:</strong> {$line.tracking nofilter}
-                  </li>
-                </ul>
-              {/foreach}
-            </div>
-          </div>
+          {/foreach}
         </div>
       </div>
     {/if}

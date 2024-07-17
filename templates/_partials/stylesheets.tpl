@@ -22,29 +22,8 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
-{$cssAssetHash = Configuration::get('PS_CCCCSS_VERSION')|md5}
-
 {foreach $stylesheets.external as $stylesheet}
-  {$url = {appendParamToUrl url=$stylesheet.uri key=v value=$cssAssetHash}}
-
-  {if $preloadCss|default:false &&
-      ($stylesheet.id === 'theme-ccc')
-      ||
-      (in_array($stylesheet.id, ['theme-main', 'theme-product', 'theme-listing', 'theme-checkout']) && $stylesheet.server !== 'remote')
-    }
-    <link
-      rel="preload"
-      href="{appendParamToUrl url=$stylesheet.uri key=v value=$cssAssetHash}"
-      as="style"
-    >
-  {/if}
-
-  <link
-    rel="stylesheet"
-    href="{appendParamToUrl url=$stylesheet.uri key=v value=$cssAssetHash}"
-    type="text/css"
-    media="{$stylesheet.media}">
+  <link rel="stylesheet" href="{$stylesheet.uri}" type="text/css" media="{$stylesheet.media}">
 {/foreach}
 
 {foreach $stylesheets.inline as $stylesheet}

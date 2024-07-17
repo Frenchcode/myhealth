@@ -22,25 +22,22 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
-<div class="modal fade js-checkout-modal" id="checkout-modal">
+<div class="modal fade js-checkout-modal" id="modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="js-modal-content"></div>
-      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="js-modal-content"></div>
     </div>
   </div>
 </div>
 
-{if $tos_cms != false}
-  <div class="py-3 text-center mt-3">
+<div class="text-sm-center">
+  {if $tos_cms != false}
     <span class="d-block js-terms">{$tos_cms nofilter}</span>
-  </div>
-{/if}
-
+  {/if}
+  {block name='copyright_link'}
+    {l s='%copyright% %year% - Ecommerce software by %prestashop%' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
+  {/block}
+</div>

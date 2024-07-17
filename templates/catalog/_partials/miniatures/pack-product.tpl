@@ -23,40 +23,55 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='pack_miniature_item'}
-  <div class="card overflow-hidden">
-    <div class="row no-gutters flex-nowrap">
-      <div class="col-4 col-md-3 col-xl-2">
-        <a href="{$product.url}" title="{$product.name}">
-          {images_block webpEnabled=$webpEnabled}
-            <img
-              class="img-fluid lazyload"
-              {generateImagesSources image=$product.default_image size='cart_default' lazyload=true}
-              width="{$product.default_image.bySize.cart_default.width}"
-              height="{$product.default_image.bySize.cart_default.height}"
-              {if !empty($product.default_image.legend)}
-                alt="{$product.default_image.legend}"
-                title="{$product.default_image.legend}"
+  <article>
+    <div class="card">
+      <div class="pack-product-container">
+        <div class="thumb-mask">
+          <div class="mask">
+            <a href="{$product.url}" title="{$product.name}">
+              {if !empty($product.default_image.medium)}
+                <picture>
+                  {if !empty($product.default_image.medium.sources.avif)}<source srcset="{$product.default_image.medium.sources.avif}" type="image/avif">{/if}
+                  {if !empty($product.default_image.medium.sources.webp)}<source srcset="{$product.default_image.medium.sources.webp}" type="image/webp">{/if}
+                  <img
+                          src="{$product.default_image.medium.url}"
+                          {if !empty($product.default_image.legend)}
+                            alt="{$product.default_image.legend}"
+                            title="{$product.default_image.legend}"
+                          {else}
+                            alt="{$product.name}"
+                          {/if}
+                          loading="lazy"
+                          data-full-size-image-url="{$product.default_image.large.url}"
+                  >
+                </picture>
               {else}
-                alt="{$product.name}"
+                <picture>
+                  {if !empty($urls.no_picture_image.bySize.medium_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.medium_default.sources.avif}" type="image/avif">{/if}
+                  {if !empty($urls.no_picture_image.bySize.medium_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.medium_default.sources.webp}" type="image/webp">{/if}
+                  <img src="{$urls.no_picture_image.bySize.medium_default.url}" loading="lazy" />
+                </picture>
               {/if}
-              data-full-size-image-url="{$product.default_image.large.url}"
-            >
-          {/images_block}
-        </a>
-      </div>
-      <div class="card-body align-self-center">
-        <p class="pack-product-name h6 mb-2">
-          <a href="{$product.url}" class="text-reset" title="{$product.name}">
-            <span class="text-muted">{$product.pack_quantity}x</span> {$product.name}
+            </a>
+          </div>
+        </div>
+
+        <div class="pack-product-name">
+          <a href="{$product.url}" title="{$product.name}">
+            {$product.name}
           </a>
-        </p>
+        </div>
 
         {if $showPackProductsPrice}
-          <div class="price">
-            {$product.price}
+          <div class="pack-product-price">
+            <strong>{$product.price}</strong>
           </div>
         {/if}
+
+        <div class="pack-product-quantity">
+          <span>x {$product.pack_quantity}</span>
+        </div>
       </div>
     </div>
-  </div>
+  </article>
 {/block}
