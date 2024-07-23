@@ -17,7 +17,7 @@
   a.dropdown-submenu {
     font-weight: 600;
     color: $gray-darker;
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   a[data-depth="0"] {
