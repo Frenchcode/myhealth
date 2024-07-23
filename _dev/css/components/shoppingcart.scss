@@ -1,0 +1,10 @@
+#_desktop_cart {
+  .header {
+    i.shopping-cart {
+      color: $brand-primary;
+    }
+    span.cart-label {
+      display: none;
+    }
+  }
+}

@@ -70,7 +70,9 @@
           {/if}
         </div>
         <div class="header-top-right col-md-10 col-sm-12 position-static">
-          {hook h='displayTop'}
+          <div class="row" id="naslim-menu">
+            {hook h='displayTop'}
+          </div>
         </div>
       </div>
       <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
