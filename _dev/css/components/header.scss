@@ -2,11 +2,10 @@
   position: relative;
   z-index: 999;
   color: $gray;
-  background-color: red;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.11);
 
   .logo {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
   }
 
@@ -147,7 +146,11 @@
 
   .header-top {
     padding: 1.25rem 0;
-    background-color: red;
+
+    .menu-wrapper {
+      margin-left: 3em;
+      margin-right: 3em;
+    }
 
     > .container {
       position: relative;
@@ -167,15 +170,16 @@
        #naslim-menu {
          display: flex;
          flex-direction: row;
-         flex-wrap: nowrap;
+         align-content: center;
          justify-content: center;
          align-items: center;
        }
     }
 
     a[data-depth="0"] {
+      font-size: 15px;
       color: $gray;
-      text-transform: lowercase;
+      text-transform: capitalize;
     }
 
     .search-widget {
@@ -194,7 +198,7 @@
       min-height: 50px;
 
       img {
-        width: auto;
+        width: 100%;
         max-height: 2rem;
       }
 

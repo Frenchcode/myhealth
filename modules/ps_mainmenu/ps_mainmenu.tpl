@@ -33,9 +33,8 @@
     {/if}
 {/function}
 
-<div class="col-md-6">
-    <div class="menu js-top-menu position-static hidden-sm-down" id="_desktop_top_menu">
-        {menu nodes=$menu.children}
-        <div class="clearfix"></div>
-    </div>
+
+<div class="menu js-top-menu position-static hidden-sm-down" id="_desktop_top_menu">
+    {menu nodes=$menu.children}
+    <div class="clearfix"></div>
 </div>

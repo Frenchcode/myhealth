@@ -56,7 +56,7 @@
 
 {block name='header_top'}
   <div class="header-top">
-    <div class="container">
+    <div class="menu-wrapper">
        <div class="row">
         <div class="col-md-2 hidden-sm-down" id="_desktop_logo">
           {if $shop.logo_details}
@@ -69,8 +69,8 @@
             {/if}
           {/if}
         </div>
-        <div class="header-top-right col-md-10 col-sm-12 position-static">
-          <div class="row" id="naslim-menu">
+        <div class=" position-static">
+          <div class="" id="naslim-menu">
             {hook h='displayTop'}
           </div>
         </div>

@@ -5,6 +5,7 @@
 
   &[data-depth="0"] {
     margin-bottom: 0;
+    text-align: center;
   }
 
   a:not([data-depth="0"]) {
@@ -84,6 +85,7 @@
 }
 
 #_desktop_top_menu {
+  flex-grow: 1;
   .top-menu {
     &[data-depth="0"] {
       li {
