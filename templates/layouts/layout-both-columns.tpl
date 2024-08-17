@@ -50,12 +50,10 @@
           {include file='_partials/header.tpl'}
         {/block}
       </header>
-
       <section id="wrapper">
         {block name='notifications'}
           {include file='_partials/notifications.tpl'}
         {/block}
-
         {hook h="displayWrapperTop"}
         <div class="container">
           {block name='breadcrumb'}

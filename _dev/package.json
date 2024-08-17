@@ -54,5 +54,5 @@
     "@fontsource/roboto": "^5.0.13",
     "sprintf-js": "^1.1.2"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.4.0"
 }
