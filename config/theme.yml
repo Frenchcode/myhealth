@@ -1,6 +1,6 @@
 name: myhealth
 display_name: My Health
-version: 2.1.4
+version: 2.2.1
 author:
   name: "Ephraim Bokuma"
   email: "ephraimbokuma@hotmail.com"
@@ -26,25 +26,21 @@ meta:
       description: Two columns with a small right column
 
 assets:
-# If you're using this theme as child and you want to load
-# the parent theme assets, uncomment this line.
-#  use_parent_assets: true
+  css:
+    all:
+      - id: glide-core-css
+        path: assets/css/glide.core.min.css
+        media: all
+        priority: 499
+  js:
+    all:
+      - id: this-swiper-lib
+        path: assets/js/swiper-config.js
+        priority: 500
 
-# The following lines are showing how to load assets in your page
-# Uncomment and change value to start loading css or js files
-#  css:
-#  all:
-#    - id: custom-lib-style
-#    path: assets/css/custom-lib.css
-#  product:
-#    - id: product-style
-#    path: assets/css/product.css
-#    media: all
-#    priority: 200
-#  js:
-#  cart:
-#    - id: cat-extra-lib
-#    path: assets/js/cart-lib.js
+      - id: glide-core-js
+        path: assets/js/glide.min.js
+        priority: 499
 
 
 global_settings:
@@ -77,7 +73,6 @@ global_settings:
         - ps_mainmenu
         - ps_searchbar
       displayHome:
-        - ps_imageslider
         - ps_featuredproducts
         - ps_banner
         - ps_customtext
