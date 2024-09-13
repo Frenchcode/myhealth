@@ -9,7 +9,7 @@
   align-items: center;
 
   .custom-text-section {
-    padding: 4.125rem;
+    padding: 5.125rem;
     width: 100%;
     background-color: $naslim-gold;
 
@@ -69,6 +69,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 5rem 0;
 
     .planet-container {
       border-radius: 50%;
@@ -81,7 +82,6 @@
     }
     .night {
       animation: rotate-night 80s linear infinite;
-      background-image: url(https://www.solarsystemscope.com/textures/download/2k_earth_nightmap.jpg);
       background-size: 200%;
       height: 360px;
       position: absolute;
@@ -90,7 +90,6 @@
     }
     .day {
       animation: rotate-day 80s linear infinite;
-      background-image: url(https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg);
       background-size: 200%;
       border-left: solid 1px black;
       border-radius: 50%;
@@ -103,7 +102,6 @@
     }
     .clouds {
       animation: rotate-day 50s linear infinite, spin-clouds 100s ease infinite;
-      background-image: url(https://www.solarsystemscope.com/textures/download/2k_earth_clouds.jpg);
       background-size: 200%;
       border-radius: 50%;
       box-shadow: 5px 0 20px 10px #040615 inset, -9px 0px 20px 10px #5e90f1 inset;
@@ -184,6 +182,10 @@
 @media screen and (min-width: $screen-md-naslim) {
   #custom-text {
     flex-direction: row;
+
+    .custom-image-section {
+      margin: 0;
+    }
   }
 
 }
