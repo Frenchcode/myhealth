@@ -1,15 +1,69 @@
 #custom-text {
-  padding: 3.125rem;
   margin-bottom: 1.5rem;
   text-align: center;
   background: $white;
   border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  container: custom-text / inline-size;
 
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: $gray-darker;
-    text-transform: uppercase;
+  .custom-text-section {
+    padding: 3.125rem;
+    width: 100%;
+    background-color: $naslim-gold;
+
+    h2 {
+      color: $white;
+      font-family: 'Roboto', serif;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 3rem;
+    }
+    h1.offer {
+      color: $white;
+      font-family: 'Anton SC', serif;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 4.5rem;
+    }
+    p.country {
+      color: $white;
+      font-family: 'Roboto', serif;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+    p.offer-text {
+      color: darken($naslim-gold, 50);
+      font-family: 'Roboto', serif;
+      text-transform: uppercase;
+      font-weight: 400;
+      line-height: 1.5rem;
+      font-size: 1.4rem;
+      margin-top: 3.5rem;
+    }
+    .price-circle {
+      position: absolute;
+      background-color: darken($naslim-gold, 20);
+      border-radius: 2.9rem;
+      left: 3%;
+      padding: 1rem;
+
+      p {
+        margin: 0;
+        padding: 0;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        font-family: 'Roboto', serif;
+      }
+    }
+  }
+
+  .custom-image-section {
+    width: 100%;
   }
 
   p {
@@ -51,4 +105,11 @@
   #block-cmsinfo {
     padding: $medium-space $large-space;
   }
+}
+
+@media screen and (min-width: $screen-md-naslim) {
+  #custom-text {
+    flex-direction: row;
+  }
+
 }
