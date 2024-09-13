@@ -27,5 +27,12 @@
     <div class="custom-text-section">
         {$cms_infos.text nofilter}
     </div>
-    <div class="custom-image-section">images</div>
+    <div class="custom-image-section">
+        <div class='planet-container'>
+            <div class='night'></div>
+            <div class='day'></div>
+            <div class='clouds'></div>
+            <div class='inner-shadow'></div>
+        </div>
+    </div>
 </div>
