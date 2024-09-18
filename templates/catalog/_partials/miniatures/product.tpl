@@ -42,7 +42,7 @@
                   height="{$product.cover.bySize.home_default.height}"
                 />
                   {$hoverImageID = 1}
-                  {if isset($product.images[$hoverImageID])}
+                  {if isset($product.images[$hoverImageID]) && $product.images[$hoverImageID] != $product.cover}
                       <img
                           src="{$product.images[$hoverImageID].bySize.home_default.url}"
                           alt="{if !empty($product.images[$hoverImageID].legend)}{$product.images[$hoverImageID].legend}{else}{$product.name|truncate:30:'...'}{/if}"
@@ -51,6 +51,16 @@
                           width="{$product.images[$hoverImageID].bySize.home_default.width}"
                           height="{$product.images[$hoverImageID].bySize.home_default.height}"
                           class="image-thumbnail-rollover"
+                      />
+                  {elseif isset(isset($product.images[$hoverImageID + 1]))}
+                      <img
+                          src="{$product.images[$hoverImageID + 1].bySize.home_default.url}"
+                          alt="{if !empty($product.images[$hoverImageID + 1].legend)}{$product.images[$hoverImageID + 1].legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                          loading="lazy"
+                          data-full-size-image-url="{$product.images[$hoverImageID + 1].large.url}"
+                          width="{$product.images[$hoverImageID + 1].bySize.home_default.width}"
+                          height="{$product.images[$hoverImageID + 1].bySize.home_default.height}"
+                          class="image-thumbnail-rollover second-chance"
                       />
                   {/if}
               </picture>
