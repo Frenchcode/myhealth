@@ -22,17 +22,18 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
-<div id="custom-text">
-    <div class="custom-text-section">
-        {$cms_infos.text nofilter}
-    </div>
-    <div class="custom-image-section">
-        <div class='planet-container'>
-            <div class='night'></div>
-            <div class='day'></div>
-            <div class='clouds'></div>
-            <div class='inner-shadow'></div>
+<div class="full-width">
+    <div id="custom-text">
+        <div class="custom-text-section">
+            {$cms_infos.text nofilter}
+        </div>
+        <div class="custom-image-section">
+            <div class='planet-container'>
+                <div class='night'></div>
+                <div class='day'></div>
+                <div class='clouds'></div>
+                <div class='inner-shadow'></div>
+            </div>
         </div>
     </div>
 </div>

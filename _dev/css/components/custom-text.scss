@@ -1,3 +1,12 @@
+.full-width {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+
 #custom-text {
   margin-bottom: 1.5rem;
   text-align: center;
@@ -7,6 +16,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
+  width: 1110px;
 
   .custom-text-section {
     padding: 5.125rem;

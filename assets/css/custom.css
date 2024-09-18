@@ -11,3 +11,10 @@
 
     background-image: url('../img/clouds.jpg');
 }
+
+
+@media (min-width: 1200px) and (min-width: 1200px) {
+    body .container {
+        width: 1682px !important;
+    }
+}
