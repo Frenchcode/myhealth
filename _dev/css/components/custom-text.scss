@@ -56,10 +56,10 @@
       margin-top: 1.5rem;
     }
     .price-circle {
-      position: absolute;
+      width: 6rem;
+      height: 6.5rem;
       background-color: darken($naslim-gold, 20);
       border-radius: 2.9rem;
-      left: 3%;
       padding: 1rem;
       -webkit-box-shadow: 7px 7px 21px 4px rgba(0,0,0,0.48);
       -moz-box-shadow: 7px 7px 21px 4px rgba(0,0,0,0.48);

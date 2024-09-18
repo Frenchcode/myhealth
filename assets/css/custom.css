@@ -18,3 +18,11 @@
         width: 1682px !important;
     }
 }
+
+
+@media (max-width: 1279px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+}
