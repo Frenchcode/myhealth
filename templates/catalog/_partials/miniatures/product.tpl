@@ -41,6 +41,18 @@
                   width="{$product.cover.bySize.home_default.width}"
                   height="{$product.cover.bySize.home_default.height}"
                 />
+                  {$hoverImageID = 1}
+                  {if isset($product.images[$hoverImageID])}
+                      <img
+                          src="{$product.images[$hoverImageID].bySize.home_default.url}"
+                          alt="{if !empty($product.images[$hoverImageID].legend)}{$product.images[$hoverImageID].legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                          loading="lazy"
+                          data-full-size-image-url="{$product.images[$hoverImageID].large.url}"
+                          width="{$product.images[$hoverImageID].bySize.home_default.width}"
+                          height="{$product.images[$hoverImageID].bySize.home_default.height}"
+                          class="image-thumbnail-rollover"
+                      />
+                  {/if}
               </picture>
             </a>
           {else}

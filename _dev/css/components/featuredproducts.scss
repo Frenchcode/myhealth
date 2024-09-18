@@ -103,6 +103,19 @@ $product-description-height: 70px;
       position: relative;
       height: calc(100% - #{$product-description-height});
 
+      .image-thumbnail-rollover {
+        position: absolute;
+        top: 0;
+        left:0;
+        opacity:0;
+        transition: all .9s cubic-bezier(.07,.74,.56,.89);
+        width: 100%;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
       img {
         position: relative;
         display: block;
@@ -250,4 +263,11 @@ $product-description-height: 70px;
   position: absolute;
   top: 4%;
   right: 6%;
+  &:hover {
+    i {
+      color: $white;
+    }
+    transition-duration: 5s;
+    background-color: red;
+  }
 }
