@@ -1,7 +1,7 @@
 #product {
   #content {
     position: relative;
-    max-width: 452px;
+    max-width: 38rem;
     margin: 0 auto;
   }
 }
@@ -113,11 +113,13 @@
     height: 2.75rem;
     padding-top: 0.625rem;
     line-height: inherit;
-    background-color: $naslim-gold;
+    background-color: darken($naslim-gold, 15);
+    box-shadow: 4px 4px 4px rgba(0,0,0,.14);
     border-radius: 0.8rem;
 
     &:hover {
-      background-color: darken($naslim-gold, 5);
+      background-color: darken($naslim-gold, 20);
+      box-shadow: none;
     }
 
     .material-icons {
