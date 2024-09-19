@@ -42,7 +42,7 @@
                   height="{$product.cover.bySize.home_default.height}"
                 />
                   {$hoverImageID = 1}
-                  {if isset($product.images[$hoverImageID]) && $product.images[$hoverImageID] != $product.cover}
+                  {if isset($product.images[$hoverImageID]) && $hoverImageID == $product.cover.position}
                       <img
                           src="{$product.images[$hoverImageID].bySize.home_default.url}"
                           alt="{if !empty($product.images[$hoverImageID].legend)}{$product.images[$hoverImageID].legend}{else}{$product.name|truncate:30:'...'}{/if}"
@@ -52,15 +52,15 @@
                           height="{$product.images[$hoverImageID].bySize.home_default.height}"
                           class="image-thumbnail-rollover"
                       />
-                  {elseif isset(isset($product.images[$hoverImageID + 1]))}
+                  {elseif isset(isset($product.images[$hoverImageID - 1]))}
                       <img
-                          src="{$product.images[$hoverImageID + 1].bySize.home_default.url}"
-                          alt="{if !empty($product.images[$hoverImageID + 1].legend)}{$product.images[$hoverImageID + 1].legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                          src="{$product.images[$hoverImageID - 1].bySize.home_default.url}"
+                          alt="{if !empty($product.images[$hoverImageID - 1].legend)}{$product.images[$hoverImageID - 1].legend}{else}{$product.name|truncate:30:'...'}{/if}"
                           loading="lazy"
-                          data-full-size-image-url="{$product.images[$hoverImageID + 1].large.url}"
-                          width="{$product.images[$hoverImageID + 1].bySize.home_default.width}"
-                          height="{$product.images[$hoverImageID + 1].bySize.home_default.height}"
-                          class="image-thumbnail-rollover second-chance"
+                          data-full-size-image-url="{$product.images[$hoverImageID - 1].large.url}"
+                          width="{$product.images[$hoverImageID - 1].bySize.home_default.width}"
+                          height="{$product.images[$hoverImageID - 1].bySize.home_default.height}"
+                          class="image-thumbnail-rollover"
                       />
                   {/if}
               </picture>
@@ -97,6 +97,7 @@
       </div>
 
       <div class="product-description">
+
         {block name='product_name'}
           {if $page.page_name == 'index'}
             <h3 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h3>

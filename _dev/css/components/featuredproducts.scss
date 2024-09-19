@@ -55,9 +55,9 @@ $product-description-height: 70px;
   }
 
   .product-title a {
-    font-size: $font-size-sm;
-    font-weight: 400;
-    color: $gray;
+    font-size: $base-font-size;
+    font-weight: 600;
+    color: $black;
     text-align: center;
     text-decoration: none;
   }
@@ -134,7 +134,7 @@ $product-description-height: 70px;
   }
 
   .product-price-and-shipping {
-    font-weight: 700;
+    font-weight: 400;
     color: $gray-darker;
     text-align: center;
 
