@@ -87,8 +87,12 @@
       }
 
       .shopping-cart {
-        color: $gray;
+        color: $black;
         vertical-align: middle;
+
+        .cart-products-count {
+          color: $black;
+        }
       }
 
       .body {
@@ -103,6 +107,7 @@
       text-align: center;
       white-space: nowrap;
       background: $gray-light;
+      border: 0.6rem;
 
       a {
         color: $gray;
