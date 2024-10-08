@@ -23,9 +23,9 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 
-<div id="search_widget" class="search-widgets" data-search-controller-url="{$search_controller_url}">
+<div id="naslim-search_widget" class="search-container" data-search-controller-url="{$search_controller_url}">
     <form method="get" action="{$search_controller_url}">
-        <i class="material-icons search" id="search-icon">search</i>
+        <i class="material-icons icon search-icon" id="search-icon">search</i>
         <label for="search-input"></label>
         <input type="text" id="search-input" class="search-input" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
         <span class="icon close-icon" id="close-icon">&#10006;</span>
