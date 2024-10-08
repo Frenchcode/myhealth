@@ -1,32 +1,4 @@
-#header, #header .header-top {
-    background-color: white;
-}
 
-#search_widget {
-    margin-bottom: .625rem;
-    overflow: auto;
-    margin-right: 1rem;
-}
-#search_widget form {
-    position: relative;
-}
-#search_widget form i {
-    position: absolute;
-    padding: .5rem;
-    color: black;
-}
-#search_widget form i.clear {
-    right: 15px;
-    display: none;
-}
-#search_widget form input {
-    width: 100%;
-    padding: 10px 20px 10px 40px;
-    outline: none;
-    background-color: #f1f1f1;
-    border: none;
-    border-radius: 0.8rem;
-}
 
 .ui-autocomplete.searchbar-autocomplete {
     width: 100%;

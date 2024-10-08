@@ -25,9 +25,9 @@
 
 <div id="search_widget" class="search-widgets" data-search-controller-url="{$search_controller_url}">
     <form method="get" action="{$search_controller_url}">
-        <input type="hidden" name="controller" value="search">
-        <i class="material-icons search" aria-hidden="true">search</i>
-        <input type="text" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
-        <i class="material-icons clear" aria-hidden="true">clear</i>
+        <i class="material-icons search" id="search-icon">search</i>
+        <label for="search-input"></label>
+        <input type="text" id="search-input" class="search-input" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
+        <span class="icon close-icon" id="close-icon">&#10006;</span>
     </form>
 </div>
