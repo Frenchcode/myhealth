@@ -5,6 +5,7 @@
 #search_widget {
     margin-bottom: .625rem;
     overflow: auto;
+    margin-right: 1rem;
 }
 #search_widget form {
     position: relative;
