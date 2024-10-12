@@ -1,6 +1,16 @@
 $thumbnail-size: 250px;
 $product-description-height: 70px;
 
+.featured-products {
+  width: 100%;
+  max-width: 117rem;
+}
+
+.featured-products.clearfix.mt-3 {
+  max-width: 102rem;
+}
+
+
 #products,
 .featured-products,
 .product-accessories {

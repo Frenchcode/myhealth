@@ -1,16 +1,16 @@
 let glideMulti1 = new Glide('.multi1', {
     type: 'carousel',
     autoplay: 3500,
-    perView: 4,
+    perView: 5,
     breakpoints: {
         640: {
             perView: 2
         },
         768: {
-            perView: 2
+            perView: 3
         },
         991: {
-            perView: 3
+            perView: 4
         }
     },
     focusAt: 'center',

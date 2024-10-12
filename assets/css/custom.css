@@ -15,7 +15,7 @@
 
 @media (min-width: 1200px) and (min-width: 1200px) {
     body .container {
-        width: 1682px !important;
+        width: 100% !important;
     }
 }
 
@@ -26,3 +26,7 @@
         max-width: 100%;
     }
 }
+
+
+/* featured-products Styling*/
+
