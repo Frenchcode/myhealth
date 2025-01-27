@@ -25,7 +25,7 @@
 
 <div class="block-contact col-md-3 links wrapper">
   <div class="title clearfix hidden-md-up" data-target="#contact-infos" data-toggle="collapse">
-    <span class="h3">{l s='Store information' d='Shop.Theme.Global'}</span>
+    <span class="footer-title">{l s='Store information' d='Shop.Theme.Global'}</span>
     <span class="float-xs-right">
       <span class="navbar-toggler collapse-icons">
         <i class="material-icons add">keyboard_arrow_down</i>
@@ -34,7 +34,7 @@
     </span>
   </div>
 
-  <p class="h4 text-uppercase block-contact-title hidden-sm-down">{l s='Store information' d='Shop.Theme.Global'}</p>
+  <p class="footer-title text-uppercase block-contact-title hidden-sm-down">{l s='Store information' d='Shop.Theme.Global'}</p>
   <div id="contact-infos" class="collapse">
     {$contact_infos.address.formatted nofilter}
     {if $contact_infos.phone}

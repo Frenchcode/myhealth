@@ -24,13 +24,13 @@
  *}
 
 <div id="block_myaccount_infos" class="col-md-3 links wrapper">
-  <p class="h3 myaccount-title hidden-sm-down">
+  <p class="footer-title myaccount-title hidden-sm-down">
     <a class="text-uppercase" href="{$urls.pages.my_account}" rel="nofollow">
       {l s='Your account' d='Shop.Theme.Customeraccount'}
     </a>
   </p>
   <div class="title clearfix hidden-md-up" data-target="#footer_account_list" data-toggle="collapse">
-    <span class="h3">{l s='Your account' d='Shop.Theme.Customeraccount'}</span>
+    <span class="footer-title">{l s='Your account' d='Shop.Theme.Customeraccount'}</span>
     <span class="float-xs-right">
       <span class="navbar-toggler collapse-icons">
         <i class="material-icons add">&#xE313;</i>

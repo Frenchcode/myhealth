@@ -162,7 +162,7 @@
 
 #block_myaccount_infos {
   .myaccount-title a {
-    color: $gray-darker;
+    color: $white;
   }
 }
 
@@ -194,6 +194,17 @@
 .footer-container {
   padding-top: $extra-large-space;
   overflow: hidden;
+  background-color: $black;
+
+  .naslim-footer-container {
+    margin: .5em 1em;
+  }
+
+  .footer-title {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: $white;
+  }
 
   .h3,
   .h4 {

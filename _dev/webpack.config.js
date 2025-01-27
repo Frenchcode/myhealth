@@ -29,7 +29,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssoWebpackPlugin = require('csso-webpack-plugin').default;
 const LicensePlugin = require('webpack-license-plugin');
 
+
 let config = {
+  performance: {
+    maxEntrypointSize: 500 * 1024, // 500 KiB
+    hints: 'warning',
+  },
   entry: {
     theme: ['./js/theme.js', './css/theme.scss'],
     error: ['./css/error.scss'],
@@ -91,12 +96,16 @@ let config = {
 
 if (process.env.NODE_ENV === 'production') {
   config.optimization = {
+    splitChunks: {
+      chunks: 'all',
+    },
     minimize: true,
     minimizer: [
       new TerserPlugin({
         parallel: true,
         extractComments: false,
       }),
+      new CssoWebpackPlugin(),
     ],
   };
 }

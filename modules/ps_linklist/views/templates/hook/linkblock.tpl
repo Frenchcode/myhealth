@@ -26,9 +26,9 @@
   <div class="row">
   {foreach $linkBlocks as $linkBlock}
     <div class="col-md-6 wrapper">
-      <p class="h3 hidden-sm-down">{$linkBlock.title}</p>
+      <p class="footer-title hidden-sm-down">{$linkBlock.title}</p>
       <div class="title clearfix hidden-md-up" data-target="#footer_sub_menu_{$linkBlock.id}" data-toggle="collapse">
-        <span class="h3">{$linkBlock.title}</span>
+        <span class="footer-title">{$linkBlock.title}</span>
         <span class="float-xs-right">
           <span class="navbar-toggler collapse-icons">
             <i class="material-icons add">&#xE313;</i>

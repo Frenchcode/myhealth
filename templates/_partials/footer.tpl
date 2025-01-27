@@ -30,7 +30,7 @@
   </div>
 </div>
 <div class="footer-container">
-  <div class="container">
+  <div class="container naslim-footer-container">
     <div class="row">
       {block name='hook_footer'}
         {hook h='displayFooter'}
@@ -43,10 +43,10 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <p class="text-sm-center">
+        <p class="text-sm-center footer-title">
           {block name='copyright_link'}
-            <a href="https://www.ephraimbokuma.com" target="_blank" rel="noopener noreferrer nofollow">
-              {l s='%copyright% %year% - Ephraim software by %prestashop%' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
+            <a href="https://www.ephraimbokuma.com" target="_blank" rel="noopener noreferrer nofollow" style="color: #ffffff;">
+              {l s='%copyright% %year% - Created by Ephraim Bokuma' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
             </a>
           {/block}
         </p>
