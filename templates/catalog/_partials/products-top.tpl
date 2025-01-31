@@ -22,16 +22,16 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div id="js-product-list-top" class="row products-selection">
-  <div class="col-lg-5 hidden-sm-down total-products">
+<div id="js-product-list-top" class=" products-selection products-selection-container">
+  <div class=" hidden-sm-down total-products">
     {if $listing.pagination.total_items > 1}
       <p>{l s='There are %product_count% products.' d='Shop.Theme.Catalog' sprintf=['%product_count%' => $listing.pagination.total_items]}</p>
     {elseif $listing.pagination.total_items > 0}
       <p>{l s='There is 1 product.' d='Shop.Theme.Catalog'}</p>
     {/if}
   </div>
-  <div class="col-lg-7">
-    <div class="row sort-by-row">
+  <div class="">
+    <div class=" sort-by-row">
       {block name='sort_by'}
         {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}
       {/block}
