@@ -3,6 +3,7 @@
   border-top: 1px solid $gray-light;
 
   .subcategory-heading {
+    display: none;
     margin-bottom: 20px;
     font-weight: 500;
   }
@@ -11,20 +12,23 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 0 0 -10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 
     li {
-      width: calc(100% / 4 - 20px);
-      min-width: 200px;
+      /*width: calc(100% / 4 - 20px);*/
+      /*min-width: 200px;*/
       margin: 10px;
       text-align: center;
 
       .subcategory-image {
+        display: none;
         padding: 0 0 8px;
 
         a {
           display: block;
           padding: 9px;
-          border: 1px solid $gray-light;
 
           img {
             max-width: 100%;
@@ -35,6 +39,12 @@
 
       .subcategory-name {
         text-transform: uppercase;
+        font-weight: 500;
+        font-size: 1em;
+        display: block;
+        padding: 1em 1.5em;
+        background: #f5f5f8;
+        border-radius: 50px;
 
         &:hover {
           color: $brand-primary;
