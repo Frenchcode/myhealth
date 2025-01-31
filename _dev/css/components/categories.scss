@@ -27,7 +27,15 @@
 
   h1 {
     margin-bottom: 1rem;
-    font-size: 2rem;
+    font-size: 3rem;
+  }
+
+  .category-header {
+    color: #232323;
+    text-align: center;
+    text-transform: capitalize;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
 
   .block-category-inner {
@@ -54,8 +62,8 @@
 
     .category-cover {
       img {
-        width: 141px;
-        height: 180px;
+        width: 100%;
+        height: auto;
       }
     }
   }
